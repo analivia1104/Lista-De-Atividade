@@ -7,7 +7,9 @@
     const texto_item  = item_lista.innerText.replace("DeletarEditar", "") // Remover o texto dos botoes apos pegar a informação
     input_element = document.querySelector('[data-form-input]') //retorna o documento do input
     input_element.value = texto_item
-    
+
+    /*********** */
+
     const botao_submit = document.querySelector('[button-submit]') //retornar o botao do submit
     botao_submit.className = 'd-none'
 
@@ -16,7 +18,9 @@
 
 }
 
-function BotaoDeletar(){  //criar função estática do botao deletar
+/******* */
+
+    function BotaoDeletar(){  //criar função estática do botao deletar
     const botao_deletar =  document.createElement('button') //cria o botão
     
     botao_deletar.classList.add("btn", "btn-outline-danger") //tipo do botao
@@ -38,7 +42,7 @@ function BotaoDeletar(){  //criar função estática do botao deletar
     return botao_editar
     }
 
-function Submit(){
+    function Submit(){
     const lista = document.querySelector('[data-task]')
     const valor = document.querySelector('[data-form-input]')
 
@@ -53,23 +57,22 @@ function Submit(){
 
     document.getElementById("item").value = ""
 }
-
-function Edit(){
+/*Em tese, o botão salvar seria um botao para salvar informação nova do edit, porem nao foi concluida com sucesso */
+    function Salvar(){
     
-    texto_adicionado = input_element.value
-    item_lista.innerHTML = texto_adicionado
+    const lista = document.querySelector('[data-task]')
+    const valor = document.querySelector('[data-form-input]')
 
-    item_lista.appendChild(BotaoDeletar())
-    item_lista.appendChild(BotaoEditar())
+    const novo_item_lista = document.createElement("li")
+    novo_item_lista.className = "list-group-item";
 
-    const botao_submit = document.querySelector('[button-submit]')
-    botao_submit.classList.remove('d-none')
-    botao_submit.classList.add('btn', 'btn-dark')
+    novo_item_lista.innerHTML = valor.value
+ 
+    novo_item_lista.appendChild(BotaoDeletar())
+    novo_item_lista.appendChild(BotaoEditar())
+    lista.appendChild (novo_item_lista)
 
-    const botao_edit = document.querySelector('[button-edit]')
-    botao_edit.classList.add('d-none')
+    document.getElementById("item").value = ""
 
-    input_element.value = '';
 
 }
-
